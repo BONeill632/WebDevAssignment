@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- HEAD -->
+<%- include('_head.html') %>
+
+    <title>About Us | Emotions Mood Tracker</title>
+    <!-- Navbar based on my own code that was passed into
+            ChatGPT & refactored into the below navbar -->
+    <nav class="navbar">
+        <!-- Logo generated from https://app.logo.com/ -->
+        <a href="/index"><img src="../img/nav-logo.png" alt="Logo" id="logo"></a>
+        <ul class="menu">
+            <a class="nav-buttons" href="/index">Home</a>
+            <% if (loggedin) { %>
+                <a class="nav-buttons" href="/newEmotion">Add Emotion</a>
+                <a class="nav-buttons" href="/timeline">Timeline</a>
+                <% } %>
+                    <a class="nav-buttons active" href="/about">About Us</a>
+                    <a class="nav-buttons" href="/contact">Contact Us</a>
+                    <% if (!loggedin) { %>
+                        <a class="nav-buttons" href="/login">Login</a>
+                        <% } else { %>
+                            <a class="nav-buttons" href="/userDetails">Account</a>
+                            <a class="nav-buttons" href="/logout">Logout</a>
+                            <% } %>
+        </ul>
+        <div class="menu-toggle" id="menuToggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <body>
+        <!-- Create a margin at each side of the page -->
+        <div class="ninety">
+            <!-- Logo generated from https://app.logo.com/ -->
+            <img src="../img/logo-transparent.png" id="body-logo">
+            <h1>About Us</h1>
+            <p>
+                Welcome to Emotions Mood Tracker, a student-driven project born out of a passion for mental well-being
+                and self-awareness. Developed by a dedicated team of students, our platform is more than just a project;
+                it's a reflection of our commitment to creating a positive impact on the lives of individuals navigating
+                the complexities of emotions.
+            </p>
+            <p>
+                As students, we understand the importance of mental health in the academic environment and beyond.
+                Recognizing the challenges that students often face in managing their emotions while juggling
+                coursework, extracurricular activities, and the demands of daily life, we embarked on this journey to
+                create a supportive space for fellow students.
+            </p>
+            <p>
+                Our About Us page is not just a narrative of our project's inception, but a testament to the
+                collaborative spirit and innovative thinking that students bring to the table. Each member of our team
+                has contributed unique skills, perspectives, and experiences, creating a dynamic environment that
+                mirrors the diverse emotions we aim to capture and understand.
+            </p>
+            <p>
+                Driven by a shared vision of promoting mental well-being within the student community, we've poured our
+                creativity and technical expertise into Emotions Mood Tracker. This project is more than just lines of
+                code; it's an expression of empathy, an acknowledgment of the emotional rollercoaster that student life
+                can be, and a practical tool to navigate those ups and downs.
+            </p>
+            <p>
+                As students ourselves, we value the importance of creating a safe and judgment-free space where
+                individuals can log and explore their emotions. Emotions Mood Tracker is not just an app; it's a
+                community – a virtual support system where students can connect, share, and grow together.
+
+            </p>
+            <p>
+                Join us on this student-led initiative, as we explore the diverse tapestry of emotions that make us
+                human. Embrace the journey of self-discovery and well-being with Emotions Mood Tracker – because as
+                students, we know that taking care of your emotions is an essential part of the academic adventure.
+                Together, let's navigate the highs and lows, one emotion at a time.
+            </p>
+
+
+            <!-- IMPLEMENT MAP API -->
+
+            <!-- ADD IN THE UNI ADDRESS -->
+        </div>
+        <%- include('_footer.html') %>
+    </body>
+
+</html>

@@ -1,0 +1,125 @@
+<!-- HEAD -->
+<%- include('_head.html') %>
+    <title>Welcome | Emotions Mood Tracker</title>
+
+    <body>
+        <!-- Navbar based on my own code that was passed into
+            ChatGPT & refactored into the below navbar -->
+        <nav class="navbar">
+            <!-- Logo generated from https://app.logo.com/ -->
+            <a href="/index"><img src="../img/nav-logo.png" alt="Logo" id="logo"></a>
+            <ul class="menu">
+                <a class="nav-buttons" href="/index">Home</a>
+                <a class="nav-buttons" href="/newEmotion">Add Emotion</a>
+                <a class="nav-buttons active" href="/timeline">Timeline</a>
+                <a class="nav-buttons" href="/about">About Us</a>
+                <a class="nav-buttons" href="/contact">Contact Us</a>
+                <a class="nav-buttons" href="/userDetails">Account</a>
+                <a class="nav-buttons" href="/logout">Logout</a>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+
+        <div class="ninety">
+            <img src="../img/logo-transparent.png" id="body-logo">
+            <div class="uk-section">
+                <div>
+                    <h1>
+                        <%= `${user.name}'s Timeline` %>
+                    </h1>
+                    <% if (errorMessage) { %>
+                        <div class="uk-width-5-5@s">
+                            <p class="alert">
+                                It looks like you haven't added any emotions yet.
+                            </p>
+                            <div class="uk-width-*@xl uk-flex uk-flex-center">
+                                <a href="/newEmotion" class="button">Add emotion</a>
+                            </div>
+                        </div>
+                        <% } else { %>
+                            <div class="uk-container">
+                                <p>
+                                    Below is a timeline of your average emotions per day, based on the emotions you
+                                    have input.
+                                    Have a look at how your emotions have changed over time!
+                                </p>
+                                <canvas id="timeline" class="uk-width-1-1"></canvas>
+                            </div>
+
+                            <h2>All emotions data</h2>
+                            <p>Below is a list of all your entered emotions within the date range you've provided</p>
+                            <div class="uk-overflow-auto">
+                                <table class="uk-table uk-table-divider uk-table-responsive">
+                                        <thead>
+                                            <tr>
+                                                <th class="name">Date/Time</th>
+                                                <th class="name">Enjoyment</th>
+                                                <th class="name">Sadness</th>
+                                                <th class="name">Anger</th>
+                                                <th class="name">Contempt</th>
+                                                <th class="name">Disgust</th>
+                                                <th class="name">Fear</th>
+                                                <th class="name">Surprise</th>
+                                                <th class="name">Triggers</th>
+                                                <th class="name">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="color-changer">
+                                            <% emotions.forEach((row)=> { %>
+                                            <% const dateOptions={ weekday: 'long' , day: 'numeric' , month: 'short' ,
+                                                year: 'numeric' , hour: 'numeric' , minute: 'numeric' ,
+                                                second: 'numeric' }; %>
+                                                <% var emotionID=row.id; %>
+                                                    <tr>
+                                                        <td class="Date logged">
+                                                            <%= new Date(row.dateLogged).toLocaleString('en-GB',
+                                                            dateOptions) %>
+                                                        </td>
+                                                        <td class="Enjoyment number">
+                                                            <%= row.enjoyment %>
+                                                        </td>
+                                                        <td class="Sadness number">
+                                                            <%= row.sadness %>
+                                                        </td>
+                                                        <td class="Anger number">
+                                                            <%= row.anger %>
+                                                        </td>
+                                                        <td class="Contempt number">
+                                                            <%= row.contempt %>
+                                                        </td>
+                                                        <td class="Disgust number">
+                                                            <%= row.disgust %>
+                                                        </td>
+                                                        <td class="Fear number">
+                                                            <%= row.fear %>
+                                                        </td>
+                                                        <td class="Surprise number">
+                                                            <%= row.surprise %>
+                                                        <td class="Triggers">
+                                                            <%= row.triggers %>
+                                                        </td>
+                                                        <td class="number">
+                                                            <a href='/editEmotion/<%= emotionID %>'>
+                                                                <button class="button" type="button">View</button>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <% }); %>
+                                        </tbody>
+                                </table>
+                            </div>
+
+                            <div id="emotions-info" data-emotions="<%= JSON.stringify(emotions) %>"></div>
+                            <%}%>
+                </div>
+            </div>
+        </div>
+
+        <script src="../utils/timeline.js"></script>
+        <script src="../utils/tableLabels.js"></script>
+
+        <%- include('_footer.html') %>

@@ -1,0 +1,125 @@
+<!-- HEAD -->
+<%- include('_head.html') %>
+
+    <script src="../utils/sliders.js"></script>
+
+    <title>Add | Emotions Mood Tracker</title>
+    <!-- Navbar based on my own code that was passed into
+    ChatGPT & refactored into the below navbar -->
+    <nav class="navbar">
+        <a href="/index"><img src="/img/nav-logo.png" alt="Logo" id="logo"></a>
+        <ul class="menu">
+            <a class="nav-buttons" href="/index">Home</a>
+            <a class="nav-buttons" href="/newEmotion">Add Emotion</a>
+            <a class="nav-buttons" href="/timeline">Timeline</a>
+            <a class="nav-buttons" href="/about">About Us</a>
+            <a class="nav-buttons" href="/contact">Contact Us</a>
+            <a class="nav-buttons" href="/logout">Logout</a>
+        </ul>
+        <div class="menu-toggle" id="menuToggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <body>
+        <!-- Create a margin at each side of the page -->
+        <div class="ninety">
+            <!-- Logo generated from https://app.logo.com/ -->
+            <img src="../img/logo-transparent.png" id="body-logo">
+            <h1>
+                Edit emotion
+            </h1>
+            <p>
+                On this page, you can choose to edit your triggers or delete this entry. If you have made an error in
+                your emotion values, please delete the entry & start over.
+            </p>
+            <% details.forEach((row)=> { %>
+                <% const dateOptions={ weekday: 'long' , day: 'numeric' , month: 'short' ,
+                year: 'numeric' , hour: 'numeric' , minute: 'numeric' , second: 'numeric' };
+                %>
+                    <% var id=row.id; %>
+                        <form method="post" action="/editEmotion/" class="uk-grid-small" uk-grid>
+                            <div class="uk-width-*@xl">
+                                <div class="slidecontainer disabled">
+                                    <label class="sliderLabel">Enjoyment<input type="range" min="0" max="10"
+                                            class="slider" id="enjoyment-range" value="<%= row.enjoyment %>"></label>
+                                    <p class="value">Value: <span id="enjoyment-value"></span></p>
+                                </div>
+                            </div>
+                            <div class="uk-width-*@xl">
+                                <div class="slidecontainer disabled">
+                                    <label class="sliderLabel">Sadness<input type="range" min="0" max="10"
+                                            class="slider" id="sadness-range" value=<%=row.sadness %>></label>
+                                    <p class="value">Value: <span id="sadness-value"></span></p>
+                                </div>
+                            </div>
+                            <div class="uk-width-*@xl">
+                                <div class="slidecontainer disabled">
+                                    <label class="sliderLabel">Anger<input type="range" min="0" max="10" class="slider"
+                                            id="anger-range" value=<%=row.anger %>></label>
+                                    <p class="value">Value: <span id="anger-value">
+                                        </span></p>
+                                </div>
+                            </div>
+                            <div class="uk-width-*@xl">
+                                <div class="slidecontainer disabled">
+                                    <label class="sliderLabel">Contempt<input type="range" min="0" max="10"
+                                            class="slider" id="contempt-range" value="<%=row.contempt %>"></label>
+                                    <p class="value">Value: <span id="contempt-value"></span></p>
+                                </div>
+                            </div>
+                            <div class="uk-width-*@xl">
+                                <div class="slidecontainer disabled">
+                                    <label class="sliderLabel">Disgust<input type="range" min="0" max="10"
+                                            class="slider" id="disgust-range" value="<%=row.disgust %>"></label>
+                                    <p class="value">Value: <span id="disgust-value"></span></p>
+                                </div>
+                            </div>
+                            <div class="uk-width-*@xl">
+                                <div class="slidecontainer disabled">
+                                    <label class="sliderLabel">Fear<input type="range" min="0" max="10" class="slider"
+                                            id="fear-range" value="<%=row.fear %>"></label>
+                                    <p class="value">Value: <span id="fear-value">
+                                        </span></p>
+                                </div>
+                            </div>
+                            <div class="uk-width-*@xl">
+                                <div class="slidecontainer disabled">
+                                    <label class="sliderLabel">Surprise<input type="range" min="0" max="10"
+                                            class="slider" id="surprise-range" value="<%=row.surprise %>"></label>
+                                    <p class="value">Value: <span id="surprise-value"></span></p>
+                                </div>
+                            </div>
+                            <div class="uk-width-*@xl">
+                                <label>Triggers<input name="triggers" type="text" value="<%=row.triggers %>"></label>
+                            </div>
+                            <div class="uk-width-*@xl">
+                                <label class="sliderLabel">Date and Time of entry
+                                    <input class="uk-input" name="dateLogged" type="text"
+                                        value="<%= new Date(row.dateLogged).toLocaleString('en-GB',
+                                        dateOptions) %>" readonly>
+                                </label>
+                            </div>
+                            <div class="uk-width-*@xl">
+                                <div class="button-container">
+                                    <button class="button" formaction="/editEmotion/<%= row.id %>">Edit</button>
+                                </div>
+                            </div>
+                            <div class="uk-width-*@xl">
+                                <div class="button-container">
+                                    <button class="cancelbtn" formaction="/delEmotion/<%= row.id %>">Delete</button>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="userid" value="<%=row.userID%>">
+                            <% }) %>
+                        </form>
+        </div>
+        </div>
+        </div>
+        <%- include('_footer.html') %>
+    </body>
+
+    </html>

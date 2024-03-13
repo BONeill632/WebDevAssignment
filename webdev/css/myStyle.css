@@ -1,0 +1,387 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  /* WALLPAPER IMAGE FROM
+  https://xmple.com/wallpaper/blue-gradient-white-
+  linear--c2-87cefa-ffffff-a-105-f-14-image/
+  DOWNLOADED TO BE STORED LOCALLY
+  */
+  background-image: url(wallpaper.svg);
+  background-size: cover;
+  background-color: #ffffff;
+  color: #1d597d;
+}
+
+.success-message{
+  align-items: center;
+  font-weight: bold;
+  color: mediumseagreen;
+}
+
+table {
+  border-radius: 8px;
+  background-color: white;
+  font-size: 14px;
+}
+
+th.name {
+  text-decoration: underline;
+  color: #1d597d;
+  font-size: 14px;
+}
+
+.number {
+  text-align: center;
+}
+
+h1 {
+  font-size: 40;
+  color: #1d597d;
+  text-align: center;
+}
+h2 {
+  color: #1d597d;
+  text-align: center;
+}
+
+h3 {
+  color: #1d597d;
+  text-align: center;
+}
+
+/* SLIDER LABELS */
+.sliderLabel {
+  color: #1d597d;
+  font-weight: bold;
+}
+
+.tableLabel {
+  font-weight: bold;
+}
+
+.color-changer tr:hover {
+  background-color: #83b6b9;
+  color: white;
+}
+
+/* INCORRECT USERNAME/PASSWORD ALERT */
+p.alert {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* SLIDER VALUES */
+p.value {
+  color: #1d597d;
+  text-align: center;
+}
+
+p {
+  color: #1d597d;
+  text-align: center;
+}
+
+/* LOGIN/TRIGGER INPUTS */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* GENERIC BUTTON */
+button {
+  background-color: #1d597d;
+  color: #ffffff;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 4px;
+  max-width: 500px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* CANCEL BUTTON */
+.cancelbtn {
+  background-color: #f44336;
+  color: #ffffff;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 4px;
+}
+
+/* FAKE BUTTON FOR SIGNUP */
+/* USED AS ITS NOT A FORM */
+a.button {
+  text-align: center;
+  background-color: #83b6b9;
+  color: #ffffff;
+  padding: 8px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 4px;
+  max-width: 460px;
+  font-size: 30;
+}
+
+a.button:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+/* ALIGN CONTENT IN THE MIDDLE 80% */
+.ninety {
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-bottom: 30px;
+}
+
+/* EMOTION SLIDERS */
+.slidecontainer {
+  width: 100%;
+}
+
+/* SOURCE: https://www.w3schools.com/howto/howto_js_rangeslider.asp
+*/
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #83b6b9;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #1d597d;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #1d597d;
+  cursor: pointer;
+}
+
+/* DISABLED FOR EDIT PAGE */
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* IMAGES */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+@media screen and (max-width: 300px) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+}
+
+/* FOOTER */
+#footer {
+  margin-top: auto;
+  background-color: #ffffff;
+  color: #1d597d;
+}
+
+/* NAV LOGO */
+#logo {
+  height: 60px;
+  width: fixed;
+  margin: 5px 5px 5px 5px;
+}
+
+/* BODY LOGO */
+#body-logo {
+  display: block;
+  margin: 0 auto;
+  width: 40%;
+  max-width: 200px;
+}
+
+/* DYNAMIC NAVBAR
+SOURCE: ChatGPT
+*/
+.navbar {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  float: left;
+}
+
+.menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  text-align: center;
+}
+
+.nav-buttons {
+  padding: 8px 18px;
+  color: #1d597d;
+}
+
+.menu a {
+  display: block;
+  color: #1d597d;
+  text-align: center;
+  padding: 23px 23px;
+  text-decoration: none;
+}
+.menu a.active {
+  background-color: #1d597d;
+  color: #ffffff;
+  border-radius: 8px;
+}
+
+.menu a:hover {
+  background-color: #83b6b9;
+  color: #ffffff;
+  border-radius: 8px;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #ffffff;
+}
+
+@media only screen and (max-width: 960px) {
+  .menu {
+    visibility: hidden;
+    opacity: 0;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color: #ffffff;
+    position: absolute;
+    top: 60px;
+    z-index: 1;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    transition: visibility 0s, opacity 0.5s ease;
+  }
+
+  .menu.show {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .menu-toggle {
+    display: flex;
+    margin-right: 10px;
+  }
+
+  .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #1d597d;
+    margin: 6px 0;
+    transition: 0.4s;
+    align-items: center;
+  }
+
+  .menu-toggle.show .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+
+  .menu-toggle.show .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.show .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+
+  /* MAKE TABLE SMALLER WHEN IN MOBILE MODE */
+  table {
+    font-size: 10px;
+  }
+
+  th.name {
+    font-size: 10px;
+  }
+}
+
+/* CHARTS */
+canvas {
+  align-items: center;
+  background-color: white;
+  border-radius: 8px;
+  border-width: 1;
+  border-color: #1d597d;
+  padding: 5px;
+}
+
+/* PASSWORD VIEW */
+form i {
+  margin-left: -30px;
+  cursor: pointer;
+}

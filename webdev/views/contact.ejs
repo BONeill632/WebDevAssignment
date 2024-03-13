@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- HEAD -->
+<%- include('_head.html') %>
+
+    <title>Contact Us | Emotions Mood Tracker</title>
+
+    <!-- BODY -->
+    <nav class="navbar">
+        <!-- Logo generated from https://app.logo.com/ -->
+        <a href="/index"><img src="../img/nav-logo.png" alt="Logo" id="logo"></a>
+        <ul class="menu">
+            <a class="nav-buttons" href="/index">Home</a>
+            <% if (loggedin) { %>
+                <a class="nav-buttons" href="/newEmotion">Add Emotion</a>
+                <a class="nav-buttons" href="/timeline">Timeline</a>
+                <% } %>
+                    <a class="nav-buttons" href="/about">About Us</a>
+                    <a class="nav-buttons active" href="/contact">Contact Us</a>
+                    <% if (!loggedin) { %>
+                        <a class="nav-buttons" href="/login">Login</a>
+                        <% } else { %>
+                            <a class="nav-buttons" href="/userDetails">Account</a>
+                            <a class="nav-buttons" href="/logout">Logout</a>
+                            <% } %>
+        </ul>
+        <div class="menu-toggle" id="menuToggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <body>
+        <div class="ninety">
+            <img src="../img/logo-transparent.png" id="body-logo">
+            <h1>Contact Us</h1>
+            <div>
+                <p>
+                    Thank you for reaching out to Emotions Mood Tracker! We value your feedback, questions, and
+                    inquiries. Your engagement is essential to us, and we're here to assist you in any way we can. Feel
+                    free to connect with us through the following channels:
+                </p>
+                <h3>Customer Support</h3>
+                <p>
+                    Our dedicated customer support team is ready to assist you with any technical issues, general
+                    inquiries, or feedback you may have. For prompt assistance, please send an email to <a
+                        href="mailto:support@emotionsmoodtracker.com">support@emotionsmoodtracker.com</a>. We strive to
+                    respond to all inquiries within 24 hours.
+                </p>
+                <h3>Collaborations and Partnerships</h3>
+                <p>
+                    If you're interested in collaborating with Emotions Mood Tracker or exploring partnership
+                    opportunities, we'd love to hear from you. Please reach out to our collaboration team at <a
+                        href="mailto:partnerships@emotionsmoodtracker.com">partnerships@emotionsmoodtracker.com</a> to
+                    discuss potential collaborations, sponsorships, or joint ventures.
+                </p>
+                <h3>Media and Press Inquiries</h3>
+                <p>
+                    For media-related queries, press releases, or interview requests, please contact our media relations
+                    team at <a href="mailto:media@emotionsmoodtracker.com">media@emotionsmoodtracker.com</a>. We're
+                    excited to
+                    share our story and insights about the positive impact of Emotions Mood Tracker.
+                </p>
+                <h3>Feedback and Suggestions</h3>
+                <p>
+                    Your opinions matter to us! If you have suggestions for improving our platform or want to share your
+                    experience with Emotions Mood Tracker, please email us at
+                    <a href="mailto:feedback@emotionsmoodtracker.com">feedback@emotionsmoodtracker.com</a>. Your
+                    feedback helps us
+                    enhance our services and create a better experience for all users.
+                </p>
+                <h3>Social Media</h3>
+                <p>
+                    Connect with us on social media for updates, tips, and community engagement. Follow us on
+                    <a href="https://twitter.com/emotionsmood">Twitter</a> and
+                    <a href="https://www.instagram.com/emotionsmoodtracker/">Instagram</a> to join the conversation.
+                </p>
+                <p>
+                    We appreciate your interest in Emotions Mood Tracker, and we look forward to connecting with you.
+                    Your well-being is our priority, and we're here to support you on your journey of self-discovery and
+                    emotional awareness.
+                </p>
+            </div>
+        </div>
+        <%- include('_footer.html') %>
+    </body>
+
+</html>

@@ -1,0 +1,83 @@
+<!-- HEAD -->
+<%- include('_head.html') %>
+
+  <!-- TITLE -->
+  <title>Login | Emotions Mood Tracker</title>
+
+  <!-- BODY -->
+
+  <!-- Navbar based on my own code that was passed into
+    ChatGPT & refactored into the below navbar -->
+  <nav class="navbar">
+    <!-- Logo generated from https://app.logo.com/ -->
+    <a href="/index"><img src="../img/nav-logo.png" alt="Logo" id="logo"></a>
+    <ul class="menu">
+      <a class="nav-buttons" href="/index">Home</a>
+      <a class="nav-buttons" href="/about">About Us</a>
+      <a class="nav-buttons" href="/contact">Contact Us</a>
+      <a class="nav-buttons active" href="/login">Login</a>
+    </ul>
+    <div class="menu-toggle" id="menuToggle">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+  </nav>
+
+  <body>
+    <!-- Create a margin at each side of the page -->
+    <div class="ninety">
+      <!-- Logo generated from https://app.logo.com/ -->
+      <img src="../img/logo-transparent.png" id="body-logo">
+      <div class="uk-section">
+        <div class="uk-container">
+          <h1>Login</h1>
+          <p>
+            Welcome back to Emotions Mood Tracker. Please log in to view your account.
+          </p>
+          <% if (errorMessage) { %>
+            <div uk-alert class="uk-alert-danger">
+              <a href class="uk-alert-close" uk-close></a>
+              <strong>
+                <%= errorMessage %>
+              </strong>
+            </div>
+            <% } %>
+              <form method="post" action="/login" class="uk-grid-small" uk-grid>
+                <div class="uk-width-*@xl">
+                  <input class="uk-input" name="username" type="email" placeholder="Username" autocomplete="username"
+                    required>
+                </div>
+                <div class="uk-width-*@xl">
+                  <input id="password" class="uk-input" name="userpass" type="password" placeholder="Password" required>
+                  <i class="bi bi-eye-slash" id="togglePassword"></i>
+                </div>
+
+                <div class="uk-width-*@xl">
+                  <div class="button-container">
+                    <button type="submit" class="button">Login</button>
+                  </div>
+                </div>
+              </form>
+              <div class="uk-width-*@xlr">
+                <div class="button-container">
+                  <a href="/createAccount" class="button">Create account</a>
+                </div>
+              </div>
+              <div class="uk-width-*@xl">
+                <div class="button-container">
+                  <a href="/forgotPassword" class="button">Forgot password</a>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+    <%- include('_footer.html') %>
+
+      <script src="../utils/validateEmail.js"></script>
+      <script src="../utils/pwdvisible.js"></script>
+  </body>
+
+
+
+  </html>

@@ -1,0 +1,196 @@
+<!-- HEAD -->
+<%- include('_head.html') %>
+    <title>Welcome | Emotions Mood Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.6"></script>
+
+    <body>
+        <!-- Navbar based on my own code that was passed into
+            ChatGPT & refactored into the below navbar -->
+        <nav class="navbar">
+            <!-- Logo generated from https://app.logo.com/ -->
+            <a href="/index"><img src="../img/nav-logo.png" alt="Logo" id="logo"></a>
+            <ul class="menu">
+                <a class="nav-buttons active" href="/index">Home</a>
+                <% if (loggedin) { %>
+                    <a class="nav-buttons" href="/newEmotion">Add Emotion</a>
+                    <a class="nav-buttons" href="/timeline">Timeline</a>
+                    <% } %>
+                        <a class="nav-buttons" href="/about">About Us</a>
+                        <a class="nav-buttons" href="/contact">Contact Us</a>
+                        <% if (!loggedin) { %>
+                            <a class="nav-buttons" href="/login">Login</a>
+                            <% } else { %>
+                                <a class="nav-buttons" href="/userDetails">Account</a>
+                                <a class="nav-buttons" href="/logout">Logout</a>
+                                <% } %>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+
+        <div class="ninety">
+            <img src="../img/logo-transparent.png" id="body-logo">
+            <% if (loggedin) { %>
+                <div class="uk-section">
+                    <div>
+                        <h1>
+                            <%= `${user.name}, View your daily snapshots below` %>
+                        </h1>
+                        <p>
+                            Here, you can choose a date and view your emotional snapshot for that day.
+                        </p>
+                        <br />
+                        <% if (errorMessage) { %>
+                            <div uk-alert class="uk-alert-danger">
+                                <a href class="uk-alert-close" uk-close></a>
+                                <strong>
+                                    It looks like you haven't added any emotions for today yet.
+                                </strong>
+                            </div>
+                            <div class="uk-width-*@xl uk-flex uk-flex-center">
+                                <a href="/newEmotion" class="button">Add emotion</a>
+                            </div>
+                    </div>
+                    <form action="/index" method="GET">
+                        <label class="sliderLabel">
+                            Select snapshot date
+                            <input id="snapshotDate" class="uk-input" name="dateLogged" type="date" required>
+                        </label>
+                    </form>
+                    <br />
+
+                    <% } else { %>
+                        <form action="/index" method="GET">
+                            <label class="sliderLabel">
+                                Select snapshot date
+                                <input id="snapshotDate" class="uk-input" name="dateLogged" type="date" required>
+                            </label>
+                        </form>
+                        <br />
+                        <div class="uk-container">
+                            <p>
+                                Below is a snapshot of your average emotions today, based on the emotions you
+                                have input.
+                                Have a look at how you are feeling!
+                            </p>
+                            <canvas id="snapshot"></canvas>
+                        </div>
+
+                        <h2>Snapshot data</h2>
+                        <p>Below is a list of all your entered emotions for today.</p>
+                        <div class="uk-overflow-auto">
+                            <table class="uk-table uk-table-middle uk-table-divider uk-table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th class="name">Date/Time</th>
+                                        <th class="name">Enjoyment</th>
+                                        <th class="name">Sadness</th>
+                                        <th class="name">Anger</th>
+                                        <th class="name">Contempt</th>
+                                        <th class="name">Disgust</th>
+                                        <th class="name">Fear</th>
+                                        <th class="name">Surprise</th>
+                                        <th class="name">Triggers</th>
+                                        <th class="name">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="color-changer">
+                                    <% emotions.forEach((row)=> { %>
+                                        <% const dateOptions={ weekday: 'long' , day: 'numeric' , month: 'short' ,
+                                            year: 'numeric' , hour: 'numeric' , minute: 'numeric' , second: 'numeric' };
+                                            %>
+                                            <% var emotionID=row.id; %>
+                                                <tr>
+                                                    <td class="Date logged">
+                                                        <%= new Date(row.dateLogged).toLocaleString('en-GB',
+                                                            dateOptions) %>
+                                                    </td>
+                                                    <td class="Enjoyment number">
+                                                        <%= row.enjoyment %>
+                                                    </td>
+                                                    <td class="Sadness number">
+                                                        <%= row.sadness %>
+                                                    </td>
+                                                    <td class="Anger number">
+                                                        <%= row.anger %>
+                                                    </td>
+                                                    <td class="Contempt number">
+                                                        <%= row.contempt %>
+                                                    </td>
+                                                    <td class="Disgust number">
+                                                        <%= row.disgust %>
+                                                    </td>
+                                                    <td class="Fear number">
+                                                        <%= row.fear %>
+                                                    </td>
+                                                    <td class="Surprise number">
+                                                        <%= row.surprise %>
+                                                    <td class="Triggers">
+                                                        <%= row.triggers %>
+                                                    </td>
+                                                    <td class="number">
+                                                        <a href='/editEmotion/<%= emotionID %>'>
+                                                            <button class="button" type="button">View</button>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="emotions-info" data-emotions="<%= JSON.stringify(emotions) %>"></div>
+
+                        <!-- SCRIPT MOVED UP A BIT TO AVOID ERRORS IN CONSOLE WHEN USER HASN'T LOGGED IN YET -->
+                        <script src="../utils/snapshot.js"></script>
+                        <script src="../utils/tableLabels.js"></script>
+                        <!-- SCRIPTS HERE FOR WHEN THERE IS DATA -->
+                        <%}%>
+                            <!-- DATE FUNCTION NEEDS TO WORK WHEN USER IS LOGGED IN BUT ON THE GENERIC INDEX PAGE -->
+                            <script src="../utils/dateSelect.js"></script>
+                            <% } else { %>
+                                <h1>Welcome to Emotions Mood Tracker</h1>
+                                <p>
+                                    Welcome to Emotions Mood Tracker, your personal companion on the journey to
+                                    self-awareness and emotional well-being. In the fast-paced world we live in, it's
+                                    crucial to pause and reflect on our emotions, understanding how they shape our daily
+                                    experiences. Our platform provides a unique space for users to log and track their
+                                    emotions effortlessly, allowing for a deeper connection with their feelings.
+
+                                </p>
+                                <p>
+                                    At Emotions Mood Tracker, we believe that acknowledging and understanding one's
+                                    emotions is a powerful tool for personal growth. Whether you're experiencing joy,
+                                    sadness, anger, or a mix of emotions, our intuitive platform empowers you to log and
+                                    review your emotional journey with ease. The process is simple – just a few clicks,
+                                    and you'll have a comprehensive snapshot of your emotions at your fingertips.
+                                </p>
+                                <p>
+                                    Our user-friendly interface allows you to log emotions on-the-go, ensuring that you
+                                    never miss a moment to capture your feelings. Dive into our detailed timeline
+                                    feature, which provides a visual representation of your emotional journey over time.
+                                    Identify patterns, celebrate victories, and navigate challenges by gaining valuable
+                                    insights into the ebb and flow of your emotional landscape.
+                                </p>
+                                <p>
+                                    We understand that every user is unique, and so are their emotional experiences.
+                                    Whether you're seeking a mindful moment to reflect or actively working towards
+                                    personal development, Emotions Mood Tracker is here to support you. Our goal is to
+                                    create a positive and inclusive community where users can share their insights,
+                                    tips, and stories, fostering a sense of connection and understanding.
+
+                                </p>
+                                <p>
+                                    Join us on this exciting adventure of self-discovery and emotional well-being.
+                                    Embrace the power of reflection and take control of your emotional narrative with
+                                    Emotions Mood Tracker – because your emotions matter, and so do you. Start your
+                                    journey today!
+                                </p>
+                                <% } %>
+                </div>
+        </div>
+        </div>
+        <%- include('_footer.html') %>

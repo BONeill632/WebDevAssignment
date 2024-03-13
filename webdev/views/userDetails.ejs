@@ -1,0 +1,95 @@
+<!-- HEAD -->
+<%- include('_head.html') %>
+    <title>Welcome | Emotions Mood Tracker</title>
+
+    <body>
+        <!-- Navbar based on my own code that was passed into
+        ChatGPT & refactored into the below navbar -->
+        <nav class="navbar">
+            <!-- Logo generated from https://app.logo.com/ -->
+            <a href="/index"><img src="../img/nav-logo.png" alt="Logo" id="logo"></a>
+            <ul class="menu">
+                <a class="nav-buttons" href="/index">Home</a>
+                <% if (loggedin) { %>
+                    <a class="nav-buttons" href="/newEmotion">Add Emotion</a>
+                    <a class="nav-buttons" href="/timeline">Timeline</a>
+                    <% } %>
+                        <a class="nav-buttons" href="/about">About Us</a>
+                        <a class="nav-buttons" href="/contact">Contact Us</a>
+                        <% if (!loggedin) { %>
+                            <a class="nav-buttons" href="/login">Login</a>
+                            <% } else { %>
+                                <a class="nav-buttons active" href="/userDetails">Account</a>
+                                <a class="nav-buttons" href="/logout">Logout</a>
+                                <% } %>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+        <div class="ninety">
+            <img src="../img/logo-transparent.png" id="body-logo">
+            <h1>
+                Account details
+            </h1>
+            <p>
+                Here you can update your account details, or delete your account.
+            </p>
+
+            <% if (successMessage) { %>
+                <div uk-alert class="uk-alert-success">
+                    <strong>
+                        <%= successMessage %>
+                    </strong>
+                </div>
+                <% } else if (errorMessage) { %>
+                    <div uk-alert class="uk-alert-danger">
+                        <a href class="uk-alert-close" uk-close></a>
+                        <strong>
+                            <%= errorMessage %>
+                        </strong>
+                    </div>
+                    <% } %>
+                        <form method="post" action="/userDetails" class="uk-grid-small" uk-grid>
+                            <% if (Array.isArray(user) && user.length> 0) {
+                                user.forEach((row) => { %>
+                                <div class="uk-width-*@xl">
+                                    <input class="uk-input" name="forename" type="text" placeholder="Forename"
+                                        value="<%= row.forename %>" required>
+                                </div>
+                                <div class="uk-width-*@xl">
+                                    <input class="uk-input" name="surname" type="text" placeholder="Surname"
+                                        value="<%= row.surname %>" required>
+                                </div>
+                                <div class="uk-width-*@xl">
+                                    <input class="uk-input" name="emailAddress" type="email" placeholder="Email address"
+                                        value="<%= row.emailAddress %>" required>
+                                </div>
+                                <div class="uk-width-*@xl">
+                                    <input id="password" class="uk-input" name="userPassword" type="password"
+                                        placeholder="New password">
+                                    <i class="bi bi-eye-slash" id="togglePassword"></i>
+                                </div>
+                                <% }); } %>
+
+                                    <div class="uk-width-*@xl">
+                                        <div class="button-container">
+                                            <button type="submit" class="button">Update details</button>
+                                        </div>
+                                        <div class="button-container">
+                                            <button class="cancelbtn" formaction="/deleteAccount">Delete
+                                                account</button>
+                                        </div>
+                                    </div>
+
+                        </form>
+        </div>
+
+        <script src="../utils/validateName.js"></script>
+        <script src="../utils/validateEmail.js"></script>
+        <script src="../utils/pwdvisible.js"></script>
+
+    </body>
+    <%- include('_footer.html') %>

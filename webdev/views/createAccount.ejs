@@ -1,0 +1,79 @@
+<!-- HEAD -->
+<%- include('_head.html') %>
+
+    <!-- Navbar based on my own code that was passed into
+    ChatGPT & refactored into the below navbar -->
+    <nav class="navbar">
+        <!-- Logo generated from https://app.logo.com/ -->
+        <a href="/index"><img src="../img/nav-logo.png" alt="Logo" id="logo"></a>
+        <ul class="menu">
+            <a class="nav-buttons" href="/index">Home</a>
+            <a class="nav-buttons" href="/about">About Us</a>
+            <a class="nav-buttons" href="/contact">Contact Us</a>
+            <a class="nav-buttons" href="/login">Login</a>
+        </ul>
+        <div class="menu-toggle" id="menuToggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <!-- TITLE -->
+    <title>Create Account | Emotions Mood Tracker</title>
+
+    <!-- BODY -->
+
+    <body>
+        <!-- Create a margin at each side of the page -->
+        <div class="ninety">
+            <!-- Logo generated from https://app.logo.com/ -->
+            <img src="../img/logo-transparent.png" id="body-logo">
+            <div class="uk-section">
+                <div class="uk-container">
+                    <h1>Create Account</h1>
+                    <p>
+                        Welcome to Emotions Mood Tracker. Please enter your details below for a free account.
+                    </p>
+                    <% if (errorMessage) { %>
+                        <div uk-alert class="uk-alert-danger">
+                            <a href class="uk-alert-close" uk-close></a>
+                            <strong>
+                                <%= errorMessage %>
+                            </strong>
+                        </div>
+                        <% } %>
+                            <form method="post" action="/createAccount" class="uk-grid-small" uk-grid>
+                                <div class="uk-width-*@xl">
+                                    <input class="uk-input" name="forename" type="text" placeholder="Forename" required>
+                                </div>
+                                <div class="uk-width-*@xl">
+                                    <input class="uk-input" name="surname" type="text" placeholder="Surname" required>
+                                </div>
+                                <div class="uk-width-*@xl">
+                                    <input class="uk-input" name="emailAddress" type="text" placeholder="Email address"
+                                        required>
+                                </div>
+                                <div class="uk-width-*@xl">
+                                    <input id="password" class="uk-input" name="userPassword" type="password"
+                                        placeholder="Password" required>
+                                    <i class="bi bi-eye-slash" id="togglePassword"></i>
+                                </div>
+                                <div class=".uk-width-*@xl">
+                                    <div class="button-container">
+                                        <button class="button">Create Account</button>
+                                    </div>
+                                </div>
+                            </form>
+                </div>
+            </div>
+        </div>
+        <%- include('_footer.html') %>
+
+            <script src="../utils/validateName.js"></script>
+            <script src="../utils/validateEmail.js"></script>
+            <script src="../utils/validatePassword.js"></script>
+            <script src="../utils/pwdvisible.js"></script>
+    </body>
+
+    </html>

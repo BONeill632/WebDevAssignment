@@ -1,0 +1,112 @@
+<!-- HEAD -->
+<%- include('_head.html') %>
+
+    <script src="../utils/sliders.js"></script>
+
+    <title>Add | Emotions Mood Tracker</title>
+    <!-- Navbar based on my own code that was passed into
+    ChatGPT & refactored into the below navbar -->
+    <nav class="navbar">
+        <a href="/index"><img src="/img/nav-logo.png" alt="Logo" id="logo"></a>
+        <ul class="menu">
+            <a class="nav-buttons" href="/index">Home</a>
+            <a class="nav-buttons active" href="/newEmotion">Add Emotion</a>
+            <a class="nav-buttons" href="/timeline">Timeline</a>
+            <a class="nav-buttons" href="/about">About Us</a>
+            <a class="nav-buttons" href="/contact">Contact Us</a>
+            <a class="nav-buttons" href="/userDetails">Account</a>
+            <a class="nav-buttons" href="/logout">Logout</a>
+        </ul>
+        <div class="menu-toggle" id="menuToggle">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <!-- BODY -->
+
+    <body>
+        <div class="ninety">
+            <img src="/img/logo-transparent.png" id="body-logo">
+            <div class="uk-section">
+                <h1>
+                    Add emotion
+                </h1>
+                <p>
+                    Here you can add an emotion. This will automatically add to your snapshot.
+                </p>
+                <div class="uk-container">
+                    <form method="post" action="/newEmotion" class="uk-grid-small" uk-grid>
+                        <div class="uk-width-*@xl">
+                            <div class="slidecontainer">
+                                <label class="sliderLabel">Enjoyment<input type="range" min="0" max="10" value="0"
+                                        class="slider" id="enjoyment-range" name="enjoyment"></label>
+                                <p>Value: <span id="enjoyment-value"></span></p>
+                            </div>
+                        </div>
+                        <div class="uk-width-*@xl">
+                            <div class="slidecontainer">
+                                <label class="sliderLabel">Sadness<input type="range" min="0" max="10" value="0"
+                                        class="slider" id="sadness-range" name="sadness"></label>
+                                <p>Value: <span id="sadness-value"></span></p>
+                            </div>
+                        </div>
+                        <div class="uk-width-*@xl">
+                            <div class="slidecontainer">
+                                <label class="sliderLabel">Anger<input type="range" min="0" max="10" value="0"
+                                        class="slider" id="anger-range" name="anger"></label>
+                                <p>Value: <span id="anger-value"></span></p>
+                            </div>
+                        </div>
+                        <div class="uk-width-*@xl">
+                            <div class="slidecontainer">
+                                <label class="sliderLabel">Contempt<input type="range" min="0" max="10" value="0"
+                                        class="slider" id="contempt-range" name="contempt"></label>
+                                <p>Value: <span id="contempt-value"></span></p>
+                            </div>
+                        </div>
+                        <div class="uk-width-*@xl">
+                            <div class="slidecontainer">
+                                <label class="sliderLabel">Disgust<input type="range" min="0" max="10" value="0"
+                                        class="slider" id="disgust-range" name="disgust"></label>
+                                <p>Value: <span id="disgust-value"></span></p>
+                            </div>
+                        </div>
+                        <div class="uk-width-*@xl">
+                            <div class="slidecontainer">
+                                <label class="sliderLabel">Fear<input type="range" min="0" max="10" value="0"
+                                        class="slider" id="fear-range" name="fear"></label>
+                                <p>Value: <span id="fear-value"></span></p>
+                            </div>
+                        </div>
+                        <div class="uk-width-*@xl">
+                            <div class="slidecontainer">
+                                <label class="sliderLabel">Surprise<input type="range" min="0" max="10" value="0"
+                                        class="slider" id="surprise-range" name="surprise"></label>
+                                <p>Value: <span id="surprise-value"></span></p>
+                            </div>
+                        </div>
+                        <div class="uk-width-*@xl">
+                            <label class="sliderLabel">Triggers<input class="" name="triggers" type="text"></label>
+
+                        </div>
+                        <div class="uk-width-*@xl">
+                            <labelclass="sliderLabel">Date and Time of entry
+                                <input class="uk-input" name="dateLogged" type="datetime-local" required>
+                            </label>
+                        </div>
+                        <div class="uk-width-*@xl">
+                            <div class="button-container">
+                              <button type="submit" class="button">Add</button>
+                            </div>
+                          </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <%- include('_footer.html') %>
+    </body>
+
+
+    </html>
